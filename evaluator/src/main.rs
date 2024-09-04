@@ -60,6 +60,9 @@ async fn main() {
     if cfg!(feature = "deploy") {
         write_csv(root_dir, &mut rps).await;
     }
+    for line in rps {
+        line.print_bench_stats();
+    }
 }
 
 fn decode_report(bytes: &[u8]) -> wtx::Result<String> {

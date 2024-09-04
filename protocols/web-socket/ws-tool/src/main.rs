@@ -1,4 +1,5 @@
 use tokio::net::TcpListener;
+use tokio::io::BufStream;
 use ws_tool::{
     codec::{default_handshake_handler, AsyncBytesCodec, FrameConfig},
     ServerBuilder,
@@ -29,11 +30,11 @@ async fn main() {
             .split();
             loop {
                 let msg = read.receive().await.unwrap();
-                if msg.code.is_close() {
+                if msg.code.is_data() {
+                    wwrite.send(msg).await.unwrap();.send(msg).unwrap();
+                } else if msg.code.is_close() {
                     break;
                 }
-
-                write.send(msg).await.unwrap();
             }
             write.flush().await.unwrap();
         });

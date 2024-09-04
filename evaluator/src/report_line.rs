@@ -50,4 +50,12 @@ impl ReportLine {
         } = self;
         string.write_fmt(format_args!("{environment},{protocol},{test},{implementation},{timestamp},{min},{max},{mean},{sd}\n")).unwrap();
     }
+
+    pub(crate) fn print_bench_stats(&self) {
+        println!("Benchmark Stats for {}: ", self.implementation);
+        println!("  Min: {}", self.bench_stats.min);
+        println!("  Max: {}", self.bench_stats.max);
+        println!("  Mean: {}", self.bench_stats.mean);
+        println!("  SD: {}", self.bench_stats.sd);
+    }
 }

@@ -21,7 +21,7 @@ jobs:
       - uses: Swatinem/rust-cache@v2
       - run: |
           cd evaluator
-          cargo run --features all-protocols,deploy --release -- "Shared GitHub runner"
+          cargo run --features web-socket,deploy --release -- "Shared GitHub runner"
           cd ../site
           npm install
           npm run build
