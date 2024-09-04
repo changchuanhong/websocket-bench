@@ -1,0 +1,9 @@
+[dependencies]
+tokio = { default-features = false, features = ["macros", "rt-multi-thread"], version = "1.40.0" }
+wtx = { default-features = false, features = ["optimization", "pool", "tokio", "web-socket-handshake"], version = "0.17" }
+
+[package]
+edition = "2021"
+name = "wtx"
+publish = false
+version = "0.0.0"

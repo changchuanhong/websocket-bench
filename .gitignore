@@ -1,0 +1,5 @@
+**/Cargo.lock
+**/Dockerfile
+**/node_modules
+**/target
+report.csv.gzip

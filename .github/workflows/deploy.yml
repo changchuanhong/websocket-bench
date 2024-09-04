@@ -1,0 +1,33 @@
+name: Deploy
+on:
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+      pages: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions-rs/toolchain@v1
+        with:
+          override: true
+          profile: minimal
+          toolchain: nightly-2024-07-10
+      - uses: Swatinem/rust-cache@v2
+      - run: |
+          cd evaluator
+          cargo run --features all-protocols,deploy --release -- "Shared GitHub runner"
+          cd ../site
+          npm install
+          npm run build
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'site/build'
+      - id: deployment
+        uses: actions/deploy-pages@v4
