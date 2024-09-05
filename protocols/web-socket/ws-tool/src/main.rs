@@ -32,11 +32,14 @@ async fn main() {
                 let msg = read.receive().await.unwrap();
                 if msg.code.is_data() {
                     write.send(msg).await.unwrap();
+                    write.flush().await.unwrap();
                 } else if msg.code.is_close() {
+                    break;
+                } else {
+                    println!("Unrecognized code {}, aborting...", msg.code);
                     break;
                 }
             }
-            write.flush().await.unwrap();
         });
     }
 }

@@ -26,6 +26,9 @@ fn main() {
                                 w.send(msg).unwrap();
                             } else if msg.code.is_close() {
                                 break;
+                            } else {
+                                println!("Unrecognized code {}, aborting...", msg.code);
+                                break;
                             }
                         }
                         Err(_) => {
