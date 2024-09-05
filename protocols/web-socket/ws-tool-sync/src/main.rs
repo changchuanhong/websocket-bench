@@ -25,6 +25,7 @@ fn main() {
                         Ok(msg) => {
                             if msg.code.is_data() {
                                 w.send(msg).unwrap();
+                                w.flush().unwrap();
                             } else if msg.code.is_close() {
                                 break;
                             } else {
