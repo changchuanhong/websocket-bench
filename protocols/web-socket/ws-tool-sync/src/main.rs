@@ -6,7 +6,7 @@ use ws_tool::{
 
 
 fn main() {
-    let listener = std::net::TcpListener::bind("0.0.0.0:9000").await.unwrap();
+    let listener = std::net::TcpListener::bind("0.0.0.0:9000").unwrap();
     loop {
         let (stream, _) = listener.accept().unwrap();
         stream.set_nodelay(true).unwrap();
@@ -27,7 +27,7 @@ fn main() {
                             } else if msg.code.is_close() {
                                 break;
                             } else {
-                                println!("Unrecognized code {}, aborting...", msg.code);
+                                println!("Unrecognized code {:?}, aborting...", msg.code);
                                 break;
                             }
                         }

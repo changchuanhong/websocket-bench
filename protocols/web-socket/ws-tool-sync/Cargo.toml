@@ -1,5 +1,4 @@
 [dependencies]
-tokio = { default-features = false, features = ["macros", "rt-multi-thread"], version = "1.40.0" }
 ws-tool = { version = "0.11.0" }
 
 [package]

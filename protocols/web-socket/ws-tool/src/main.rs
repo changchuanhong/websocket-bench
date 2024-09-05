@@ -36,7 +36,7 @@ async fn main() {
                 } else if msg.code.is_close() {
                     break;
                 } else {
-                    println!("Unrecognized code {}, aborting...", msg.code);
+                    println!("Unrecognized code {:?}, aborting...", msg.code);
                     break;
                 }
             }
