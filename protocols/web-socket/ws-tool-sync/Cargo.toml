@@ -1,4 +1,5 @@
 [dependencies]
+threadpool = "1.8.1"
 ws-tool = { version = "0.11.0" }
 
 [package]

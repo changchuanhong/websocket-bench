@@ -7,10 +7,11 @@ use ws_tool::{
 
 fn main() {
     let listener = std::net::TcpListener::bind("0.0.0.0:9000").unwrap();
-    loop {
-        let (stream, _) = listener.accept().unwrap();
+    let pool = threadpool::ThreadPool::new(8);
+    for stream in listener.incoming() {
+        let stream = stream.unwrap();
         stream.set_nodelay(true).unwrap();
-        let _jh = std::thread::spawn(move || {
+        pool.execute(move || {
             let buf_size = 1024 * 16;
             let (mut r, mut w) =
                         ServerBuilder::accept(stream, default_handshake_handler, |req, stream| {
