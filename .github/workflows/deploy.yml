@@ -21,13 +21,4 @@ jobs:
       - uses: Swatinem/rust-cache@v2
       - run: |
           cd evaluator
-          cargo run --features web-socket,deploy --release -- "Shared GitHub runner"
-          cd ../site
-          npm install
-          npm run build
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: 'site/build'
-      - id: deployment
-        uses: actions/deploy-pages@v4
+          cargo run --features web-socket --release -- "Shared GitHub runner"

@@ -52,10 +52,8 @@ impl ReportLine {
     }
 
     pub(crate) fn print_bench_stats(&self) {
-        println!("Benchmark Stats for {}: ", self.implementation);
-        println!("  Min: {}", self.bench_stats.min);
-        println!("  Max: {}", self.bench_stats.max);
-        println!("  Mean: {}", self.bench_stats.mean);
-        println!("  SD: {}", self.bench_stats.sd);
+        let mut string = String::new();
+        self.push_to_string(&mut string);
+        println!("{}", string);
     }
 }

@@ -31,7 +31,7 @@ async fn main() {
             loop {
                 let msg = read.receive().await.unwrap();
                 if msg.code.is_data() {
-                    wwrite.send(msg).await.unwrap();.send(msg).unwrap();
+                    write.send(msg).await.unwrap();
                 } else if msg.code.is_close() {
                     break;
                 }
